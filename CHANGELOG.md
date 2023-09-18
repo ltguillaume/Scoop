@@ -1,3 +1,9 @@
+## [v0.3.2](https://github.com/ScoopInstaller/Scoop/compare/v0.3.1...v0.3.2) - 2023-09-18
+
+### Bug Fixes
+
+- **update:** To prevent user data loss, do not uninstall the entire app when updating, i.e. don't trigger `pre_uninstall`, `post_uninstall` and `uninstaller`
+
 ## [v0.3.1](https://github.com/ScoopInstaller/Scoop/compare/v0.3.0...v0.3.1) - 2022-11-15
 
 ### Features

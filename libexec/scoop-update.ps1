@@ -258,16 +258,12 @@ function update($app, $global, $quiet = $false, $independent, $suggested, $use_c
     $dir = versiondir $app $old_version $global
     $persist_dir = persistdir $app $global
 
-    Invoke-HookScript -HookType 'pre_uninstall' -Manifest $old_manifest -Arch $architecture
-
     #region Workaround for #2952
     if (test_running_process $app $global) {
         return
     }
     #endregion Workaround for #2952
 
-    Write-Host "Uninstalling '$app' ($old_version)"
-    run_uninstaller $old_manifest $architecture $dir
     rm_shims $app $old_manifest $global $architecture
     env_rm_path $old_manifest $dir $global $architecture
     env_rm $old_manifest $global $architecture
@@ -290,8 +286,6 @@ function update($app, $global, $quiet = $false, $independent, $suggested, $use_c
             Move-Item "$dir" "$dir/../_$version.old($i)"
         }
     }
-
-    Invoke-HookScript -HookType 'post_uninstall' -Manifest $old_manifest -Arch $architecture
 
     if ($bucket) {
         # add bucket name it was installed from
